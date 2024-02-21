@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+  #countdown {
+    font-size: 36px;
+    margin-top: 50px;
+  }
+  #congrats {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+    color: green;
+  }
+  #crackers {
+    display: none;
+    margin-top: 20px;
+  }
+  #static-text {
+    font-size: 24px;
+    margin-top: 20px;
+    color: green;
+  }
+</style>
+</head>
+<body>
+<div id="static-text">#Tara #RamankiTalveen the day is arriving in :</div>
+<div id="countdown">00:00:00</div>
+<div id="congrats">Congratulations! Finally, the day has arrived! #Tara #RamanKiTalveen</div>
+<div id="crackers">
+  <iframe src="https://giphy.com/embed/ZhvduEq5hWKYsmhRAJ" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sendwishonline-congrats-congro-congratulaion-ZhvduEq5hWKYsmhRAJ">via GIPHY</a></p>
+</div>
+
+<script>
+  // Set the target date and time
+  const targetDate = new Date("2024-03-31T00:00:00").getTime();
+
+  // Update the countdown every second
+  const countdown = setInterval(function() {
+    // Get the current date and time
+    const now = new Date().getTime();
+
+    // Calculate the remaining time
+    const distance = targetDate - now;
+
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the countdown
+    document.getElementById("countdown").innerText = `${days.toString().padStart(2, '0')} days ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    // If the countdown is finished, display congratulations message and crackers, and clear the interval
+    if (distance < 0) {
+      clearInterval(countdown);
+      document.getElementById("countdown").style.display = "none";
+      document.getElementById("congrats").style.display = "block";
+      document.getElementById("crackers").style.display = "block";
+	  document.getElementById("static-text").style.display = "none";
+	  
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
